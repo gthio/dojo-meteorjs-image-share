@@ -7,14 +7,17 @@
 
   <h1>Welcome to coursera!</h1>
 
-
-
   <div class="container">
     {{> images}}
   </div>
 </body>
 
 <template name="images">
+    
+    <button class="btn btn-success js-show-image-form">
+        add image
+    </button>
+    
     <div class="row">
     
         {{#each images}}
@@ -25,7 +28,7 @@
                     
                     <div class="caption">
                         <h3>Rating: {{rating}}</h3>
-                        <p>Description of the image</p>
+                        <p>{{img_alt}}</p>
                         
                         <p>
                             {{>starsRating mutable=true class="js-image-rate" id=_id}}
@@ -44,10 +47,30 @@
 </template>
 
 <template name="image_add_form">
-    <form class="js-add-image">
-        <input type="text" name="img_src" />
-        <br/>
-        <input type="text" name="img_alt" />
-        <button class="btn btn-success">save</button>
-    </form>
+    
+    <div class="modal fade" id="image_add_form">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="js-add-image">
+                        <input type="text" name="img_src" />
+                        <br/>
+                        <input type="text" name="img_alt" />
+                        <button class="btn btn-success">save</button>
+                    </form>                    
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal">
+                        cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>    
+
 </template>
