@@ -4,7 +4,7 @@ console.log(Images.find().count());
 
 if (Meteor.isClient) {
         
-  Template.images.helpers({images: Images.find()});
+  Template.images.helpers({images: Images.find({}, {sort: {rating: -1}})});
   
   Template.images.events(
       {
@@ -17,8 +17,21 @@ if (Meteor.isClient) {
               
               $("#" + image_id).hide('slow', function(){
                 Images.remove({"_id": image_id});                  
-              })
-          }
+              })},
+              
+         'click .js-image-rate' : function (event) {
+            
+            var rating = $(event.currentTarget).data("userrating");
+            var image_id = this.id;
+            
+            Images.update({_id: image_id}, {$set: {rating: rating}});
+            
+          },
+            
+            
+              
+                
+          
       }
   );
 }
