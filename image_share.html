@@ -3,7 +3,11 @@
 </head>
 
 <body>
+  {{> image_add_form}}  
+
   <h1>Welcome to coursera!</h1>
+
+
 
   <div class="container">
     {{> images}}
@@ -37,4 +41,13 @@
         {{/each}}
         
     </div>        
+</template>
+
+<template name="image_add_form">
+    <form class="js-add-image">
+        <input type="text" name="img_src" />
+        <br/>
+        <input type="text" name="img_alt" />
+        <button class="btn btn-success">save</button>
+    </form>
 </template>
