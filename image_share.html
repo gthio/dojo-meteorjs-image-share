@@ -1,22 +1,24 @@
 <head>
-  <title>image_share</title>
+    <title>image_share</title>
 </head>
 
 <body>
-  {{> image_add_form}}  
+    {{> image_add_form}}  
   
-  <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             {{> loginButtons}}
         </div>
-  </nav>
+    </nav>
           
-  <div class="container">
+    <div class="container">
       
-        <h1>Welcome to image share {{username}}!</h1>
-   
+        <h1>
+            Welcome to image share {{username}}!
+        </h1>
+    
         {{> images}}
-  </div>
+    </div>
 </body>
 
 <template name="images">
@@ -43,12 +45,11 @@
                     
                     <div class="caption">
                         <h3>Rating: {{rating}}</h3>
-                        <p>{{img_alt}}</p>
-                        
+                        <p>
+                            {{img_alt}}
+                        </p>
                         <p>User: 
-                            
                             <a href="#" class="js-image-filter">{{getUser createdBy}}</a>
-                        
                         </p>
                         <p>
                             {{>starsRating mutable=true class="js-image-rate" id=_id}}
@@ -69,6 +70,7 @@
 <template name="image_add_form">
     
     <div class="modal fade" id="image_add_form">
+        
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
