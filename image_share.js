@@ -9,7 +9,18 @@ if (Meteor.isClient) {
     });
         
   Template.images.helpers({
-      images: Images.find({}, {sort: {createdOn: -1, rating: -1}}),
+      images:function() {
+      
+      if (Session.get("userFilter"))
+      {
+        return Images.find({createdBy: Session.get("userFilter")}, {sort: {createdOn: -1, rating: -1}});
+      }
+      else
+      {
+          return Images.find({}, {sort: {createdOn: -1, rating: -1}});
+      }
+          
+      },
       
       getUser:function(user_id){
           
@@ -51,6 +62,10 @@ if (Meteor.isClient) {
               $("#" + image_id).hide('slow', function(){
                 Images.remove({"_id": image_id});                  
               })},
+              
+            'click .js-image-filter': function(event){
+              Session.set("userFilter", this.createdBy);
+            } ,  
               
          'click .js-image-rate' : function (event) {
             

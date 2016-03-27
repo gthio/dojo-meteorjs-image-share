@@ -40,7 +40,12 @@
                     <div class="caption">
                         <h3>Rating: {{rating}}</h3>
                         <p>{{img_alt}}</p>
-                        <p>User: {{getUser createdBy}}</p>
+                        
+                        <p>User: 
+                            
+                            <a href="#" class="js-image-filter">{{getUser createdBy}}</a>
+                        
+                        </p>
                         <p>
                             {{>starsRating mutable=true class="js-image-rate" id=_id}}
                         </p>
