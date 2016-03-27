@@ -13,7 +13,7 @@
           
   <div class="container">
       
-        <h1>Welcome to image share!</h1>
+        <h1>Welcome to image share {{username}}!</h1>
    
         {{> images}}
   </div>
@@ -21,9 +21,13 @@
 
 <template name="images">
     
+    {{#if currentUser}}
+    
     <button class="btn btn-success js-show-image-form">
         add image
     </button>
+    
+    {{/if}}
     
     <div class="row">
     
