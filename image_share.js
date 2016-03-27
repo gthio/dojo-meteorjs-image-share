@@ -8,7 +8,23 @@ if (Meteor.isClient) {
         passwordSignupFields: "USERNAME_AND_EMAIL"
     });
         
-  Template.images.helpers({images: Images.find({}, {sort: {createdOn: -1, rating: -1}})});
+  Template.images.helpers({
+      images: Images.find({}, {sort: {createdOn: -1, rating: -1}}),
+      
+      getUser:function(user_id){
+          
+          var user = Meteor.users.findOne({_id:user_id});
+          if (user){
+              return user.username;
+          }
+          else{
+              return "anonymouse user"
+          }
+      }
+      
+      });
+  
+  
   
   Template.body.helpers({username: function() {
       
@@ -62,12 +78,16 @@ if (Meteor.isClient) {
         
         console.log(img_src + " - " + img_alt);
         
-        Images.insert({
+        if(Meteor.user()){
+          Images.insert({
             
             img_src: img_src,
             img_alt: img_alt,
-            createdOn: new Date()
-        });
+            createdOn: new Date(),
+            createdBy: Meteor.user()._id
+        });          
+        }
+
         
         $("#image_add_form").modal('show');
         
