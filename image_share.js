@@ -22,6 +22,27 @@ if (Meteor.isClient) {
           
       },
       
+      filtering_images:function(){
+        if (Session.get("userFilter")) {
+            return true;
+        }  
+        else {
+            return false;
+        }
+      },
+      
+      getFilterUser:function(){
+          if (Session.get("userFilter")){
+             var user = Meteor.users.findOne(
+                 {_id:Session.get("userFilter")});
+                 
+                return user.username;
+          }
+          else{
+              return "anom";
+          }
+      },
+      
       getUser:function(user_id){
           
           var user = Meteor.users.findOne({_id:user_id});
@@ -66,6 +87,10 @@ if (Meteor.isClient) {
             'click .js-image-filter': function(event){
               Session.set("userFilter", this.createdBy);
             } ,  
+              
+             'click .js-image-filter-remove': function(event){
+              Session.set("userFilter", undefined);
+            } ,               
               
          'click .js-image-rate' : function (event) {
             

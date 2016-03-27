@@ -29,6 +29,10 @@
     
     {{/if}}
     
+    {{#if filtering_images}}
+        Showing images by user {{getFilterUser}}. <a href="#" class="js-image-filter-remove">Show all images</a>
+    {{/if}}
+    
     <div class="row">
     
         {{#each images}}
