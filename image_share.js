@@ -4,6 +4,30 @@ console.log(Images.find().count());
 
 if (Meteor.isClient) {
     
+    Session.set("imageLimit", 4);
+    
+    lastScrollTop = 0;
+    
+    $(window).scroll(function(event) {
+        
+
+        
+        if ($(window).scrollTop() + $(window).height() > $(document).height() - 100)
+        {
+            var scrollTop = $(this).scrollTop();
+            
+            if (scrollTop > lastScrollTop){
+                Session.set("imageLimit", Session.get("imageLimit") + 2);
+            }
+            
+            lastScrollTop = scrollTop;
+        } 
+        
+
+ 
+    });
+    
+    
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_AND_EMAIL"
     });
@@ -17,7 +41,7 @@ if (Meteor.isClient) {
       }
       else
       {
-          return Images.find({}, {sort: {createdOn: -1, rating: -1}});
+          return Images.find({}, {sort: {createdOn: -1, rating: -1}, limit: Session.get("imageLimit")});
       }
           
       },
