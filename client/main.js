@@ -1,7 +1,14 @@
+
+Router.route('/', function () {
+  this.render('navbar');
+});
+
+Router.route('/images', function () {
+  this.render('images');
+});
+
 Session.set("imageLimit", 4);
-    
-lastScrollTop = 0;
-    
+lastScrollTop = 0;  
 $(window).scroll(function(event){
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 100){
 
