@@ -1,7 +1,6 @@
 Meteor.startup(function(){
   
   if (Images.find().count() == 0){
-
     for (var i = 1; i <= 3 ; i++){
       
       Images.insert({
